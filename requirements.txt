@@ -1,0 +1,9 @@
+jupyterlab
+pandas
+beautifulsoup4
+loguru
+ccxt
+python-box
+tqdm
+playwright
+openpyxl
