@@ -30,7 +30,7 @@ if not RATE_OVERRIDES_CSV.exists():
     logger.info(f'created empty rates override csv: {RATE_OVERRIDES_CSV}')
     empty_rate_overrides_df = pd.DataFrame(columns=['asset', 'apy', 'duration', 'txt', 'airdrop', 'type'])
     empty_rate_overrides_df.to_csv(RATE_OVERRIDES_CSV, index=False)
-    
+
 
 # DEFI -----------------------------------------------------------------------------
 
@@ -278,12 +278,13 @@ def get_full_yield_data(parent_dir=PARENT_DIR):
     )
 
     df['expected_return_annl'] = df['expected_return'] * (365 / df['duration'])
+    df = df.sort_values('expected_return_annl', ascending=False)
 
     return Box(dict(
         df=df,
         price=spot_px,
-        price_corr=spot_px.corr(),
-        funding_rate=perp_funding
+        funding_rate=perp_funding,
+        price_corr=spot_px.corr()
     ))
 
 
@@ -584,6 +585,7 @@ class DeliveryKlineMinutely(KlineBinanceEndpoint):
 
 def main(output_dir=PARENT_DIR):
     download_staking_html()
+    download_defi_html()
     d = get_full_yield_data()
 
     now_ts = pd.Timestamp.now()
