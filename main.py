@@ -42,7 +42,7 @@ def download_staking_html(bnx_url=BNX_STAKING_URL, parent_dir=PARENT_DIR):
     
     with sync_playwright() as p:
         logger.info('scraping binance for staking rates')
-        browser = p.firefox.launch(headless=False)
+        browser = p.firefox.launch(headless=True)
         page = browser.new_page()
         page.goto(bnx_url)
         page.wait_for_timeout(10000)
