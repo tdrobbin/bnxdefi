@@ -1,3 +1,5 @@
+run with python main.py, logs show where output excel file is saved.
+
 First 10 rows
 
 |    | sym      | asset   |    apy |   duration | txt                         | airdrop   | type    | override   | sym.1    |   duration_yield |   daily_vol |   duration_vol |   duration_prob_liquidation |   duration_fundingrate |   duration_fundingrate_r2 |   expected_return |   expected_return_annl |
